@@ -2,6 +2,9 @@
 <p>Recipe ID: <%= @recipe.id %></p>
 <p>料理名: <%= @recipe.dish_name %></p>
 <p>レシピ説明: <%= @recipe.recipe_description%></p>
+<% if @recipe.photo.attached? %>
+  <%= image_tag @recipe.photo.variant(resize: "300x300") %>
+<% end %>
 
 <h2>材料</h2>
 <ul>

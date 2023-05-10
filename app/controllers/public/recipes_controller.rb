@@ -28,12 +28,14 @@ class Public::RecipesController < ApplicationController
   def edit
     @recipe = Recipe.find(params[:id])
     @recipe.ingredients.build
+    @recipe.steps.build
   
   end
   
   def update
+    @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+      redirect_to @recipe, notice: "Recipe updated successfully."
     else
       render :edit
     end
@@ -51,6 +53,8 @@ class Public::RecipesController < ApplicationController
   end
 
  def recipe_params
-    params.require(:recipe).permit(:customer_id, :dish_name, :recipe_description, ingredients_attributes: [:id, :recipe_id, :ingredient_name, :quantity, :_destroy], steps_attributes: [:id, :recipe_id, :instruction, :_destroy])
+    params.require(:recipe).permit(:customer_id, :dish_name, :recipe_description, :photo, 
+    ingredients_attributes: [:id, :recipe_id, :ingredient_name, :quantity, :_destroy], 
+    steps_attributes: [:id, :recipe_id, :instruction, :_destroy])
  end
 end

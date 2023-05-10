@@ -5,5 +5,9 @@
     <li>
       <%= link_to recipe.dish_name, recipe_path(recipe) %>
     </li>
+   <% if recipe.photo.attached? %>
+      <%= image_tag recipe.photo.variant(resize: "100x100") %>
+   <% end %>
+   <%= link_to "編集", edit_recipe_path(recipe) %>
   <% end %>
 </ul>
