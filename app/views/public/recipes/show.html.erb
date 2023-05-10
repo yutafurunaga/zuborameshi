@@ -1,0 +1,20 @@
+<h1>レシピ詳細</h1>
+<p>Recipe ID: <%= @recipe.id %></p>
+<p>料理名: <%= @recipe.dish_name %></p>
+<p>レシピ説明: <%= @recipe.recipe_description%></p>
+
+<h2>材料</h2>
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.ingredient_name %> - <%= ingredient.quantity %></li>
+  <% end %>
+</ul>
+
+<h2>手順</h2>
+<ol>
+  <% @recipe.steps.each do |step| %>
+    <li><%= step.instruction %></li>
+  <% end %>
+</ol>
+
+<%= link_to 'Back to List', recipes_path %>
