@@ -1,0 +1,21 @@
+<h1>ユーザー一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>名前</th>
+      <th>フリガナ</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.email %></td>
+        <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
+        <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
+        <td><%= customer.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

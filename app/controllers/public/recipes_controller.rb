@@ -42,8 +42,9 @@ class Public::RecipesController < ApplicationController
   end
   
   def destroy
+    @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
+    redirect_to recipes_path, notice: 'レシピを削除しました。'
   end
 
   private

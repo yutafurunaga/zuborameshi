@@ -1,0 +1,10 @@
+<h1>マイページ</h1>
+<p>氏名</p>
+<p>姓: <%= @customer.family_name %></p>
+<p>名: <%= @customer.personal_name %></p>
+<p>セイ: <%= @customer.family_name_kana %></p>
+<p>メイ: <%= @customer.personal_name_kana %></p>
+<p>メールアドレス: <%= @customer.email %></p>
+<p>ステータス: <%= @customer.status %></p>
+
+<%= link_to '編集する', edit_customer_path %>

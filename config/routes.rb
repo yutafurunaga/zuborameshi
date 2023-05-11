@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'customers/index'
+  end
+  get 'customers/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 # 顧客用
 # URL /customers/sign_in ...
@@ -30,6 +34,7 @@ devise_scope :admin do
     resources :relationships
     resources :ingredients
     resources :steps
+    resources :customers
 
  	end
 

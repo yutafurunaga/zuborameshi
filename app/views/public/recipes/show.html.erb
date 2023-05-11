@@ -14,10 +14,11 @@
 </ul>
 
 <h2>手順</h2>
+
 <ol>
   <% @recipe.steps.each do |step| %>
     <li><%= step.instruction %></li>
   <% end %>
 </ol>
 
-<%= link_to 'Back to List', recipes_path %>
+<%= link_to 'レシピ一覧', recipes_path %>
