@@ -15,7 +15,7 @@
     <%= form.label :投稿者 %>
     <%= form.number_field :customer_id, class: "form-control" %>
   </div>
-  
+
   <div class="field">
     <%= form.label :photo %>
     <%= form.file_field :photo %>
@@ -40,7 +40,7 @@
       <%= link_to_add_association '追加', form, :ingredients, class: 'btn btn-primary' %>
     </div>
   </div>
-  
+
   <%= form.fields_for :steps do |step_form| %>
     <%= render 'step_fields', f: step_form %>
   <% end %>
