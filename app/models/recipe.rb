@@ -7,7 +7,10 @@ class Recipe < ApplicationRecord
 
   belongs_to :customer
   has_many :comments, dependent: :destroy
-
-
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+    favorites.exists?(customer_id: customer.id)
+  end
   has_one_attached :photo
 end

@@ -50,7 +50,7 @@ class Public::RecipesController < ApplicationController
   private
 
   def set_recipe
-   @recipe = Recipe.find_by(id: params[:id])
+   @recipe = Recipe.find(params[:id])
   end
 
  def recipe_params

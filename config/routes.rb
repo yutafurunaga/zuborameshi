@@ -32,6 +32,7 @@ devise_scope :admin do
     get "home/about"=> 'homes#about'
     resources :recipes do
     resources :comments
+    resource :favorites, only: [:create, :destroy]
     end
     resources :relationships
     resources :ingredients

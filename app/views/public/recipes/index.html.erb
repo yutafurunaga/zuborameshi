@@ -10,7 +10,12 @@
    <% if recipe.photo.attached? %>
       <%= image_tag recipe.photo.variant(resize: "100x100") %>
    <% end %>
+   
+   <p>コメント件数: <%= recipe.comments.count %></p>
+   
+   
    <%= link_to "編集", edit_recipe_path(recipe) %>
    <td><%= button_to '削除', recipe, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
   <% end %>
 </ul>
+
