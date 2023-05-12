@@ -5,7 +5,7 @@
     <li>
       <%= link_to recipe.dish_name, recipe_path(recipe) %>
     
-    　<p>レシピについて: <%= recipe.recipe_description%></p>
+    　<p>レシピについて: <%= recipe.recipe_description %></p>
     </li>
    <% if recipe.photo.attached? %>
       <%= image_tag recipe.photo.variant(resize: "100x100") %>

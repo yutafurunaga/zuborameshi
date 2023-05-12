@@ -1,18 +1,44 @@
 class Public::CommentsController < ApplicationController
-  
+  before_action :set_recipe
+  before_action :set_comment, only: [:edit, :update, :destroy]
   def create
-  @recipe = Recipe.find(params[:recipe_id])
-  @comment = @recipe.comments.build(comment_params)
-  @comment.customer_id = current_customer.id
+    @comment = @recipe.comments.build(comment_params)
+    @comment.customer = current_customer
+
   if @comment.save
-    redirect_to recipe_path(@recipe)
-  else
-    render 'recipes/show'
+      redirect_to @recipe
+    else
+      render "recipes/show"
+    end
   end
-end
+  
+  def edit
+  end
+  
+  def update
+    if @comment.update(comment_params)
+      redirect_to recipe_path(@recipe), notice: "コメントが更新されました"
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @comment.destroy
+    redirect_to recipe_path(@recipe), notice: "コメントが削除されました"
+  end
 
 private
-def comment_params
-  params.require(:comment).permit(:comment)
-end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
+  
+  def set_comment
+    @comment = @recipe.comments.find(params[:id])
+  end
+
+  def comment_params
+      params.require(:comment).permit(:comment)
+  end
 end

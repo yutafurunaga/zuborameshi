@@ -23,4 +23,25 @@
 
 <%= link_to 'レシピ一覧', recipes_path %>
 
+<h1><%= @recipe.dish_name %></h1>
+<p><%= @recipe.recipe_description %></p>
 
+
+<!-- コメントフォーム -->
+<%= form_with(model: [@recipe, Comment.new]) do |form| %>
+<%= form.text_area :comment %>
+<%= form.submit "コメントする" %>
+<% end %>
+
+<!-- コメント一覧 -->
+<% @recipe.comments.each do |comment| %>
+
+  <p><%= comment.customer.email %>: <%= comment.comment %></p>
+  <% if comment.customer == current_customer %>
+    <%= link_to "編集", edit_recipe_comment_path(@recipe, comment) %>
+    <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+<% end %>
+
+
+    

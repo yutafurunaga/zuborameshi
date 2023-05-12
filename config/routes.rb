@@ -30,12 +30,13 @@ devise_scope :admin do
  scope module: :public do
    root to: "homes#top"
     get "home/about"=> 'homes#about'
-    resources :recipes
+    resources :recipes do
+    resources :comments
+    end
     resources :relationships
     resources :ingredients
     resources :steps
     resources :customers
 
  	end
-
 end
