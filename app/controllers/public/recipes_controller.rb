@@ -9,6 +9,7 @@ class Public::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.tag_list.add(params[:tag_list])
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe was successfully created.'
     else
@@ -38,7 +39,9 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+   
     if @recipe.update(recipe_params)
+      # binding.irb
       redirect_to @recipe, notice: "Recipe updated successfully."
     else
       render :edit
@@ -50,7 +53,7 @@ class Public::RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path, notice: 'レシピを削除しました。'
   end
-  
+
   def favorite
   @favorite_recipes = current_customer.favorite_recipes
   end

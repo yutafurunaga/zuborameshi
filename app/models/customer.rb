@@ -5,21 +5,13 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes, dependent: :destroy
+  # has_many :foos, dependent: :destroy, class_name: 'Recipe'
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_recipes, through: :favorites, source: :recipe
 
   def self.looks(search, word)
-    if search == "perfect_match"
-      @customer = Customer.where("family_name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @customer = Customer.where("family_name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @customer = Customer.where("family_name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @customer = Customer.where("family_name LIKE?","%#{word}%")
-    else
-      @customer = Customer.all
-    end
+    @customer = Customer.where("family_name LIKE ? OR personal_name LIKE ?", "%#{word}%", "%#{word}%")
   end
 
 end

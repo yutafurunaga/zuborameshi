@@ -33,8 +33,8 @@
 
   <div class="field">
     <%= form.label :tag_list, 'タグ' %>
-    <%#= select_tag :tag, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
-    <%= form.text_field :tag_list, value: @recipe.tag_list.join(', ') %>
+    <%= select_tag :tag_list, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
+    <%#= form.text_field :tag_list, value: @recipe.tag_list.join(', ') %>
   </div>
 
   <h3>材料一覧</h3>

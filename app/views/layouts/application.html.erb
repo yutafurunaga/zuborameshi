@@ -17,8 +17,8 @@
      <h1>レシピ検索</h1>
      <%= form_with(url: recipes_path, method: :get) do |form| %>
       <%= form.label :tag, 'タグ検索:' %>
-      <%= form.text_field :tag %>
-      <%#= select_tag :tag, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
+      <%#= form.text_field :tag %>
+      <%= select_tag :tag, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
       <%= form.submit '検索' %>
      <% end %>
     <%= form_tag(search_path, method: :get) do %>

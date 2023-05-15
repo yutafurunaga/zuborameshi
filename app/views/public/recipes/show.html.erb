@@ -6,6 +6,10 @@
   <%= image_tag @recipe.photo.variant(resize: "300x300") %>
 <% end %>
 
+
+  <%= @recipe.tag_list %>
+
+
 <h2>材料</h2>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>

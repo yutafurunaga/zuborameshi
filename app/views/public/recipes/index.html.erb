@@ -3,6 +3,7 @@
 <%= render 'public/searches/search' %>
 <ul>
   <% @recipes.each do |recipe| %>
+  <%= link_to "いいね一覧", recipe_favorite_path(recipe) %>
     <li>
       <%= link_to recipe.dish_name, recipe_path(recipe) %>
 
@@ -13,7 +14,7 @@
    <% end %>
 
   <% recipe.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
+    <%= tag.name %>
   <% end %>
 
    <p>コメント件数: <%= recipe.comments.count %></p>
