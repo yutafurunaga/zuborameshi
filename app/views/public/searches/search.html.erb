@@ -1,0 +1,34 @@
+<h2>Books search for "test"</h2>
+<table class="table table-hover table-inverse">
+
+  <% if @range == "Customer" %>
+    <tbody>
+      <tr>
+          <th></th>
+          <th>name</th>
+          <th>introduction</th>
+          </tr>
+           <% @customer.each do |customer| %>
+          <td><%= link_to customer.family_name, customer %></td>
+          <td><%= customer.personal_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+
+    <tbody>
+       <tr>
+          <th></th>
+          <th>title</th>
+          <th>Opinion</th>
+        </tr>
+        <% @recipes.each do |recipe| %>
+        <tr>
+         
+          <td><%= link_to recipe.dish_name, recipe %></td>
+          <td><%= recipe.recipe_description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

@@ -59,3 +59,4 @@ gem 'devise'
 
 gem 'cocoon'
 
+gem 'acts-as-taggable-on'

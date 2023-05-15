@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :public do
+    get 'searches/search'
+  end
+  get 'searches/search'
+  namespace :public do
     get 'customers/index'
   end
   get 'customers/index'
@@ -30,14 +34,18 @@ devise_scope :admin do
  scope module: :public do
    root to: "homes#top"
     get "home/about"=> 'homes#about'
+    get "search" => "searches#search"
     resources :recipes do
     resources :comments
-    resource :favorites, only: [:create, :destroy]
+    resource :favorites
+    get :favorite, to: "recipes#favorite"
     end
+
     resources :relationships
     resources :ingredients
     resources :steps
     resources :customers
+    resources :tags
 
  	end
 end

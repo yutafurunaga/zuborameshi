@@ -1,0 +1,5 @@
+<h1>いいねしたレシピ一覧</h1>
+<% @favorite_recipes.each do |recipe| %>
+  <p><%= recipe.dish_name %></p>
+  <%= link_to recipe.dish_name, recipe_path(recipe) %>
+<% end %>

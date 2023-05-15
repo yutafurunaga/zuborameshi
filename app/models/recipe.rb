@@ -8,9 +8,27 @@ class Recipe < ApplicationRecord
   belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  acts_as_taggable_on :tags
   
-  def favorited_by?(user)
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @recipe = Recipe.where("dish_name LIKE?","#{word}")
+    elsif search == "forward_match"
+       @recipe = Recipe.where("dish_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+       @recipe = Recipe.where("dish_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+       @recipe = Recipe.where("dish_name LIKE?","%#{word}%")
+    else
+       @recipe = Recipe.all
+    end
+  end
+
+  def favorited_by?(customer)
+    #byebug
     favorites.exists?(customer_id: customer.id)
   end
-  has_one_attached :photo
+   has_one_attached :photo
 end

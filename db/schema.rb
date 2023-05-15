@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_12_140513) do
+ActiveRecord::Schema.define(version: 2023_05_14_061832) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -109,6 +109,13 @@ ActiveRecord::Schema.define(version: 2023_05_12_140513) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipes_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "recipe_id", null: false
+    t.index ["recipe_id", "tag_id"], name: "index_recipes_tags_on_recipe_id_and_tag_id"
+    t.index ["tag_id", "recipe_id"], name: "index_recipes_tags_on_tag_id_and_recipe_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follow_id"
     t.integer "follower_id"
@@ -119,6 +126,12 @@ ActiveRecord::Schema.define(version: 2023_05_12_140513) do
   create_table "steps", force: :cascade do |t|
     t.integer "recipe_id"
     t.text "instruction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -10,12 +10,12 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="form-group">
     <%= form.label :投稿者 %>
     <%= form.number_field :customer_id, class: "form-control" %>
   </div>
-
+  
   <div class="field">
     <%= form.label :photo %>
     <%= form.file_field :photo %>
@@ -25,13 +25,19 @@
     <%= form.label :料理名 %>
     <%= form.text_field :dish_name, class: "form-control" %>
   </div>
-
+  
   <div class="form-group">
     <%= form.label :レシピ説明 %>
     <%= form.text_area :recipe_description, class: "form-control" %>
   </div>
 
-  <h3>Ingredients</h3>
+  <div class="field">
+    <%= form.label :tag_list, 'タグ' %>
+    <%#= select_tag :tag, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
+    <%= form.text_field :tag_list, value: @recipe.tag_list.join(', ') %>
+  </div>
+
+  <h3>材料一覧</h3>
   <div id="ingredients">
     <%= form.fields_for :ingredients do |ingredient_form| %>
       <%= render 'ingredient_fields', f: ingredient_form %>
@@ -40,7 +46,7 @@
       <%= link_to_add_association '追加', form, :ingredients, class: 'btn btn-primary' %>
     </div>
   </div>
-
+  
   <%= form.fields_for :steps do |step_form| %>
     <%= render 'step_fields', f: step_form %>
   <% end %>

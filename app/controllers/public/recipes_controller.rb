@@ -17,7 +17,11 @@ class Public::RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+   if params[:tag].present?
+      @recipes = Recipe.tagged_with(params[:tag])
+    else
+      @recipes = Recipe.all
+    end
   end
 
 
@@ -46,6 +50,10 @@ class Public::RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path, notice: 'レシピを削除しました。'
   end
+  
+  def favorite
+  @favorite_recipes = current_customer.favorite_recipes
+  end
 
   private
 
@@ -54,7 +62,7 @@ class Public::RecipesController < ApplicationController
   end
 
  def recipe_params
-    params.require(:recipe).permit(:customer_id, :dish_name, :recipe_description, :photo,
+    params.require(:recipe).permit(:customer_id, :dish_name, :recipe_description, :photo, :tag_list,
     ingredients_attributes: [:id, :recipe_id, :ingredient_name, :quantity, :_destroy],
     steps_attributes: [:id, :recipe_id, :instruction, :_destroy])
  end
