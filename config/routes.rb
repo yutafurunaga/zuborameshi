@@ -29,12 +29,14 @@ devise_scope :admin do
   namespace :admin do
    root to: 'homes#top'
   get "home/top"=> 'homes#top'
-  resources :comments, only: [:destroy]
+  resources :recipes do
+  resources :comments
+  end
   resources :customers
   end
 
  scope module: :public do
-   root to: "homes#top"
+    root to: "homes#top"
     get "home/about"=> 'homes#about'
     get "search" => "searches#search"
     resources :recipes do

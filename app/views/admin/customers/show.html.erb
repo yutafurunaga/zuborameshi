@@ -3,7 +3,7 @@
 <ul>
   <% @recipes.each do |recipe| %>
     <li><%= recipe.dish_name %>: <%= recipe.recipe_description %></li>
-    <%= link_to "コメント一覧", recipe_comments_path(recipe.id) %>
+    <%= link_to "コメント一覧", admin_recipe_comments_path(recipe) %>
     
   <% end %>
 </ul>

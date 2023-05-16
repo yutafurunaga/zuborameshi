@@ -10,12 +10,12 @@ before_action :authenticate_customer!
 def search
     @range = params[:range]
 
-    if @range == "customer"
+    if @range == "customers"
       @customer = Customer.looks(params[:search], params[:word])
     else
       @recipes = Recipe.looks(params[:search], params[:word])
     end
-  end
+end
 
 
 end
