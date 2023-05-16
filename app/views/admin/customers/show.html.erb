@@ -1,0 +1,9 @@
+<h1><%= @customer.family_name %> のレシピ一覧</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li><%= recipe.dish_name %>: <%= recipe.recipe_description %></li>
+    <%= link_to "コメント一覧", recipe_comments_path(recipe.id) %>
+    
+  <% end %>
+</ul>

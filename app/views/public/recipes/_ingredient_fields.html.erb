@@ -1,12 +1,12 @@
 <div class="nested-fields">
-  <div class="field">
+  <div class="form-group">
     <%= f.label :材料 %>
-    <%= f.text_field :ingredient_name %>
+    <%= f.text_field :ingredient_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :分量 %>
-    <%= f.text_field :quantity %>
+    <%= f.text_field :quantity, class: "form-control" %>
   </div>
 
   <%= link_to_remove_association "削除", f, class: 'btn btn-danger' %>

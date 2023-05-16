@@ -29,6 +29,8 @@ devise_scope :admin do
   namespace :admin do
    root to: 'homes#top'
   get "home/top"=> 'homes#top'
+  resources :comments, only: [:destroy]
+  resources :customers
   end
 
  scope module: :public do

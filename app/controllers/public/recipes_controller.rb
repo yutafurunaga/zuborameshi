@@ -39,7 +39,7 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-   
+
     if @recipe.update(recipe_params)
       # binding.irb
       redirect_to @recipe, notice: "Recipe updated successfully."

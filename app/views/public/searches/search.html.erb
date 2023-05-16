@@ -1,4 +1,4 @@
-<h2>Books search for "test"</h2>
+<h2>検索結果一覧</h2>
 <table class="table table-hover table-inverse">
 
   <% if @range == "Customer" %>
@@ -18,13 +18,18 @@
 
     <tbody>
        <tr>
-          <th></th>
-          <th>title</th>
-          <th>Opinion</th>
+          <th>写真</th>
+          <th>料理名</th>
+          <th>レシピ説明</th>
         </tr>
         <% @recipes.each do |recipe| %>
         <tr>
-         
+          <td><% if recipe.photo.attached? %>
+              <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
+            <% else %>
+              <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
+            <% end %>
+          </td>
           <td><%= link_to recipe.dish_name, recipe %></td>
           <td><%= recipe.recipe_description %></td>
         </tr>

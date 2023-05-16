@@ -1,5 +1,10 @@
 <h1>いいねしたレシピ一覧</h1>
 <% @favorite_recipes.each do |recipe| %>
-  <p><%= recipe.dish_name %></p>
+  <% if recipe.photo.attached? %>
+  <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
+  <% else %>
+  <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
+  <% end %>
   <%= link_to recipe.dish_name, recipe_path(recipe) %>
+  <%= recipe.recipe_description %>
 <% end %>

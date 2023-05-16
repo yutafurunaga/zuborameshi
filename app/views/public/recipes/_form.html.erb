@@ -1,6 +1,6 @@
-<%= form_with(model: @recipe, local: true) do |form| %>
+<%= form_with(model: @recipe, local: true, class: "recipe-form") do |form| %>
   <% if @recipe.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
       <ul>
@@ -16,11 +16,11 @@
     <%= form.number_field :customer_id, class: "form-control" %>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= form.label :photo %>
-    <%= form.file_field :photo %>
+    <%= form.file_field :photo, class: "form-control-file" %>
   </div>
-
+　
   <div class="form-group">
     <%= form.label :料理名 %>
     <%= form.text_field :dish_name, class: "form-control" %>
@@ -31,10 +31,9 @@
     <%= form.text_area :recipe_description, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :tag_list, 'タグ' %>
     <%= select_tag :tag_list, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
-    <%#= form.text_field :tag_list, value: @recipe.tag_list.join(', ') %>
   </div>
 
   <h3>材料一覧</h3>
@@ -54,8 +53,7 @@
     <%= link_to_add_association '追加', form, :steps, class: 'btn btn-primary' %>
   </div>
 
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '投稿する', class: 'btn btn-primary' %>
   </div>
 <% end %>
