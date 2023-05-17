@@ -39,6 +39,7 @@ devise_scope :admin do
     root to: "homes#top"
     get "home/about"=> 'homes#about'
     get "search" => "searches#search"
+    delete '/customers/:id/withdraw', to: 'customers#withdraw', as: 'customer_withdraw'
     resources :recipes do
     resources :comments
     resource :favorites
