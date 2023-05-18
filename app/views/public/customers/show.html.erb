@@ -35,3 +35,4 @@
   </div>
 </div>
 <%= button_to "退会する", customer_withdraw_path(@customer), method: :delete, data: { confirm: '本当に退会しますか？' }, class: 'withdraw-button' %>
+<%= link_to "退会しない", customer_path %>

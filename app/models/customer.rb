@@ -13,5 +13,5 @@ class Customer < ApplicationRecord
   def self.looks(search, word)
     @customer = Customer.where("family_name LIKE ? OR personal_name LIKE ?", "%#{word}%", "%#{word}%")
   end
-
+  
 end

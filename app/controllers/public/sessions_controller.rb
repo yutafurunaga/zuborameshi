@@ -17,7 +17,7 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
+  
   protected
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
