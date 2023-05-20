@@ -18,6 +18,12 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
   
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'guestuserでログインしました。'
+  end
+
   protected
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])

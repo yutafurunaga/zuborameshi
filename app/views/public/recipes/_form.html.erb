@@ -10,22 +10,20 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="form-group">
-    <%= form.label :投稿者 %>
-    <%= form.number_field :customer_id, class: "form-control" %>
+  投稿者<br>
+  <div class="mb-3">
+  <%= current_customer.family_name %>
   </div>
-  
   <div class="form-group">
     <%= form.label :photo %>
     <%= form.file_field :photo, class: "form-control-file" %>
   </div>
-　
+
   <div class="form-group">
     <%= form.label :料理名 %>
     <%= form.text_field :dish_name, class: "form-control" %>
   </div>
-  
+
   <div class="form-group">
     <%= form.label :レシピ説明 %>
     <%= form.text_area :recipe_description, class: "form-control" %>
@@ -45,7 +43,7 @@
       <%= link_to_add_association '追加', form, :ingredients, class: 'btn btn-primary' %>
     </div>
   </div>
-  
+
   <%= form.fields_for :steps do |step_form| %>
     <%= render 'step_fields', f: step_form %>
   <% end %>

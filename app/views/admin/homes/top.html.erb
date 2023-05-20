@@ -15,7 +15,7 @@
         <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
         <td><%= customer.status %></td>
-        <td><%= link_to "詳細", admin_customer_path(customer) %></td>
+        <td><%= link_to "ユーザー情報、レシピ詳細", admin_customer_path(customer) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -14,4 +14,10 @@ class Customer < ApplicationRecord
     @customer = Customer.where("family_name LIKE ? OR personal_name LIKE ?", "%#{word}%", "%#{word}%")
   end
   
+  def self.guest
+    find_or_create_by!(family_name: 'guestuser' ,email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+    end
+  end
+  
 end

@@ -22,10 +22,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-devise_scope :admin do
-    get 'admin/sign_out' => 'admin/sessions#destroy'
+  devise_scope :admin do
+      get 'admin/sign_out' => 'admin/sessions#destroy'
+    end
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-  
 
   namespace :admin do
    root to: 'homes#top'
@@ -41,7 +43,7 @@ devise_scope :admin do
     get "home/about"=> 'homes#about'
     get "search" => "searches#search"
     delete '/customers/:id/withdraw', to: 'customers#withdraw', as: 'customer_withdraw'
-    
+
     resources :recipes do
     resources :comments
     resource :favorites

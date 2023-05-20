@@ -9,8 +9,9 @@ class Public::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.customer_id = current_customer.id
     @recipe.tag_list.add(params[:tag_list])
-    if @recipe.save
+    if @recipe.save!
       redirect_to @recipe, notice: 'Recipe was successfully created.'
     else
       render :new

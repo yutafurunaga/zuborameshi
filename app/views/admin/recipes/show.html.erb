@@ -1,0 +1,31 @@
+<div class="recipe-details">
+  <h1><%= @recipe.dish_name %></h1>
+  <p><%= @recipe.recipe_description %></p>
+
+  <% if @recipe.photo.attached? %>
+    <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
+  <% end %>
+
+  <div class="tags">
+    <%= @recipe.tag_list %>
+  </div>
+
+  <h2>材料</h2>
+  <ul class="ingredients-list">
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.ingredient_name %> - <%= ingredient.quantity %></li>
+    <% end %>
+  </ul>
+
+  <h2>手順</h2>
+  <ol class="steps-list">
+    <% @recipe.steps.each do |step| %>
+      <li><%= step.instruction %></li>
+    <% end %>
+  </ol>
+
+
+  <%= link_to '削除', admin_recipe_path(@recipe), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+
+
+  
