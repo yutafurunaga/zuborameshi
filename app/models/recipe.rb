@@ -20,4 +20,7 @@ class Recipe < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
    has_one_attached :photo
+   def display_photo
+    photo.attached? ? photo : 'no_image.jpeg'
+  end
 end

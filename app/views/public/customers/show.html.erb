@@ -8,7 +8,9 @@
   <p>メールアドレス: <%= @customer.email %></p>
   <p>ステータス: <%= @customer.status %></p>
 
-  <%= link_to '編集する', edit_customer_path %>
+  <% if @editable %>
+  <%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-sm btn-primary mr-2" %>
+  <% end %>
 
   <div class="recipes-section">
     <h2>あなたが投稿したレシピ一覧:</h2>
@@ -17,7 +19,7 @@
       <% if recipe.photo.attached? %>
           <%= image_tag recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
         <% else %>
-          <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
+          <%= image_tag "no_image.jpeg", class: "img-fluid" %>
         <% end %>
       <h5><%= link_to recipe.dish_name, recipe_path(recipe) %></h5>
         <li><%= recipe.dish_name %>: <%= recipe.recipe_description %></li>

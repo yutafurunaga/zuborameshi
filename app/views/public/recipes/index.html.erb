@@ -10,7 +10,7 @@
             <% if recipe.photo.attached? %>
               <%= image_tag recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
             <% else %>
-              <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
+              <%= image_tag "no_image.jpeg", class: "img-fluid" %>
             <% end %>
           </div>
           <div class="col-sm-10">

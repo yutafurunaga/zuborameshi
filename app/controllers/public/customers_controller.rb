@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!, only: [:edit]
+  
   def index
     @customers = Customer.all
   end
@@ -7,10 +9,15 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @recipes = @customer.recipes
     @comments = @customer.comments
+    @editable = current_customer == @customer # 現在のカスタマーと表示対象のカスタマーを比較
   end
 
   def edit
      @customer = Customer.find(params[:id])
+     unless current_customer == @customer
+      redirect_to customer_path(@customer), alert: "他のユーザーの編集はできません。"
+      return
+    end
   end
 
   def update

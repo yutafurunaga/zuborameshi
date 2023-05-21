@@ -1,6 +1,8 @@
 class Public::RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_customer!, except: [:index, :show]
+  before_action :authorize_customer, only: [:edit, :update, :destroy]
+  
   def new
     @recipe = Recipe.new
     @recipe.ingredients.build
@@ -63,6 +65,12 @@ class Public::RecipesController < ApplicationController
 
   def set_recipe
    @recipe = Recipe.find(params[:id])
+  end
+  
+  def authorize_customer
+    unless @recipe.customer == current_customer
+      redirect_to @recipe, alert: '他のユーザーのレシピは編集できません。'
+    end
   end
 
  def recipe_params

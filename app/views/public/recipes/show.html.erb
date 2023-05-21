@@ -2,9 +2,11 @@
   <h1><%= @recipe.dish_name %></h1>
   <p><%= @recipe.recipe_description %></p>
 
-  <% if @recipe.photo.attached? %>
-    <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
-  <% end %>
+   <% if @recipe.photo.attached? %>
+      <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
+    <% else %>
+      <%= image_tag "no_image.jpeg", class: "img-fluid" %>
+    <% end %>
 
   <div class="tags">
     <%= @recipe.tag_list %>
@@ -42,8 +44,10 @@
       </div>
     </div>
   </div>
+  <% if current_customer == @recipe.customer %>
   <%= link_to "編集", edit_recipe_path(@recipe), class: "btn btn-sm btn-primary mr-2" %>
   <%= button_to '削除', @recipe, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+  <% end %>
   <div class="comments-section">
     <h3>コメント</h3>
 
