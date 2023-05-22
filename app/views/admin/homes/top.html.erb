@@ -1,11 +1,12 @@
 <h1>ユーザー一覧</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
       <th>名前</th>
       <th>フリガナ</th>
       <th>ステータス</th>
+      <th>アクション</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +16,7 @@
         <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
         <td><%= customer.status %></td>
-        <td><%= link_to "ユーザー情報、レシピ詳細", admin_customer_path(customer) %></td>
+        <td><%= link_to "ユーザー情報、レシピ詳細", admin_customer_path(customer), class: "btn btn-primary btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>

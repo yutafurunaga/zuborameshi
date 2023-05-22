@@ -16,14 +16,5 @@
  body{
 background-image: image-url('cook.jpg');
 background-size: cover;
-}
 
-.blur-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 6); /* ぼかし効果用のオーバーレイの背景色 */
-  backdrop-filter: blur(5px); /* ぼかし効果を追加 */
 }

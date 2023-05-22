@@ -1,24 +1,31 @@
 <div class="my-page">
   <h1>マイページ</h1>
-  <p>氏名</p>
-  <p>姓: <%= @customer.family_name %></p>
-  <p>名: <%= @customer.personal_name %></p>
-  <p>セイ: <%= @customer.family_name_kana %></p>
-  <p>メイ: <%= @customer.personal_name_kana %></p>
-  <p>メールアドレス: <%= @customer.email %></p>
-  <p>ステータス: <%= @customer.status %></p>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mb-2"><strong>氏名</strong></p>
+      <p>姓: <%= @customer.family_name %></p>
+      <p>名: <%= @customer.personal_name %></p>
+      <p>セイ: <%= @customer.family_name_kana %></p>
+      <p>メイ: <%= @customer.personal_name_kana %></p>
+      <p>メールアドレス: <%= @customer.email %></p>
+      <p>ステータス: <%= @customer.status %></p>
+    </div>
+    <div class="col-md-6">
+      <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-primary mb-3" %>
+    </div>
+  </div>
 
-  <%= link_to '編集する', edit_admin_customer_path(@customer) %>
-
-
-
-
-<h1><%= @customer.family_name %> のレシピ一覧</h1>
-
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= recipe.dish_name %>: <%= recipe.recipe_description %></li>
-    <%= link_to "コメント一覧", admin_recipe_comments_path(recipe) %>
-    <%= link_to "レシピ詳細", admin_recipe_path(recipe) %>
-  <% end %>
-</ul>
+  <h1><%= @customer.family_name %> のレシピ一覧</h1>
+  <ul class="list-group">
+    <% @recipes.each do |recipe| %>
+      <li class="list-group-item">
+         <% if recipe.photo.attached? %>
+          <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
+         <% end %>
+        <%= recipe.dish_name %>: <%= recipe.recipe_description %>
+        <%= link_to "コメント一覧", admin_recipe_comments_path(recipe), class: "btn btn-secondary btn-sm mx-2" %>
+        <%= link_to "レシピ詳細", admin_recipe_path(recipe), class: "btn btn-primary btn-sm mx-2" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

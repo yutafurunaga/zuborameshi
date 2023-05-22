@@ -1,13 +1,11 @@
 <h1><%= @recipe.dish_name %> のコメント一覧</h1>
 
-  <% @comments.each do |comment| %>
-    <li>
-      <%= comment.customer.email %>: <%= comment.comment %>
-       
-      <%= link_to "削除", admin_recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
-    
-  <% end %>
-</ul>
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <p><%= comment.customer.email %>: <%= comment.comment %></p>
+    <%= link_to "削除", admin_recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+  </div>
+<% end %>
 
 
 
