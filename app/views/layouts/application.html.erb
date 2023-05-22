@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ArrengeRecipe</title>
+    <title>zuborameshi</title>
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,11 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100" style="background-color: rgb(250, 250, 230);">
+  <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
      <%#= form.text_field :tag %>
-     
-     <h1>レシピ検索</h1>
+
+     <h3>レシピ検索はこちら</h3>
      <%= render 'public/searches/search' %>
      <div class="container">
      <%= form_with(url: recipes_path, method: :get, class: "form-inline mb-3") do |form| %>
@@ -39,6 +39,7 @@
     <!--  <%# end %>-->
     <main class="mb-auto">
     <%= yield %>
+    </main>
     <%= render 'layouts/footer' %>
   </body>
 </html>

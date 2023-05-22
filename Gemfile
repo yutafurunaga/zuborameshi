@@ -66,3 +66,4 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'kaminari','~> 1.2.1'

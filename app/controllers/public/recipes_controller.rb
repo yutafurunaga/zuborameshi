@@ -22,9 +22,9 @@ class Public::RecipesController < ApplicationController
 
   def index
    if params[:tag].present?
-      @recipes = Recipe.tagged_with(params[:tag])
+      @recipes = Recipe.tagged_with(params[:tag]).page(params[:page]).per(10)
    else
-      @recipes = Recipe.all
+      @recipes = Recipe.page(params[:page]).per(10)
    end
   end
 

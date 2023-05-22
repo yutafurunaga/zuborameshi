@@ -5,7 +5,7 @@
    <% if @recipe.photo.attached? %>
       <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
     <% else %>
-      <%= image_tag "no_image.jpeg", class: "img-fluid" %>
+      <%= image_tag "no_image.jpg", class: "img-fluid" %>
     <% end %>
 
   <div class="tags">

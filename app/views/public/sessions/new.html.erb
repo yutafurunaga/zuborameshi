@@ -1,5 +1,12 @@
-<h2>顧客Log in</h2>
 
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light py-4 mb-0">ユーザーログイン</h5>
+      <div class="form-body p-4">
+
+        <div class="mx-auto text-center">
+          <p>メールアドレスと<br>パスワードを入力してください。</p>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -22,5 +29,8 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
+</div>
+    </div>
+  </div>
+</div>
 <%= render "public/shared/links" %>

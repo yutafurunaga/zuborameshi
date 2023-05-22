@@ -42,7 +42,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to: "homes#top"
     get "home/about"=> 'homes#about'
     get "search" => "searches#search"
-    delete '/customers/:id/withdraw', to: 'customers#withdraw', as: 'customer_withdraw'
+    get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
 
     resources :recipes do
     resources :comments

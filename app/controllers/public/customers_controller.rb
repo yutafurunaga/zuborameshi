@@ -28,20 +28,16 @@ class Public::CustomersController < ApplicationController
       render :edit
     end
   end
+  
+  def unsubscribe
+    # 退会画面の表示
+  end
 
-  def withdraw
-    @customer = Customer.find(params[:id])
-    # 退会処理の実装
-    if @customer.update(is_deleted: true)
-       reset_session
-      # 退会が成功した場合の処理
-      # 例えば、トップページにリダイレクトするなど
-      redirect_to home_about_path, notice: '退会が完了しました。'
-    else
-      # 退会が失敗した場合の処理
-      # 例えば、エラーメッセージを表示するなど
-      redirect_to customer_path(@customer), alert: '退会に失敗しました。'
-    end
+ def withdrawal
+    current_customer.withdraw
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
 
    private

@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="recipes-section">
-    <h2>あなたが投稿したレシピ一覧:</h2>
+    <h2>投稿したレシピ一覧:</h2>
     <ul>
       <% @recipes.each do |recipe| %>
       <% if recipe.photo.attached? %>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="comments-section">
-    <h2>Comments:</h2>
+    <h2>コメント:</h2>
     <ul>
       <% @comments.each do |comment| %>
         <li><%= comment.comment %></li>
@@ -36,5 +36,6 @@
     </ul>
   </div>
 </div>
-<%= button_to "退会する", customer_withdraw_path(@customer), method: :delete, data: { confirm: '本当に退会しますか？' }, class: 'withdraw-button' %>
-<%= link_to "退会しない", customer_path %>
+
+
+<%= link_to "退会手続きはこちら", unsubscribe_path(@customer), method: :get %>

@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <%= form.label :ステータス %>
-    <%= form.text_field :status, class: "form-control" %>
+    <%= form.select :status, Customer.statuses.keys.map { |s| [s, s] }, include_blank: true, class: 'form-control' %>
   </div>
 
   <%= form.submit "更新", class: "btn btn-primary" %>

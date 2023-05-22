@@ -1,5 +1,6 @@
 <h1>ユーザー一覧</h1>
-<table>
+
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
@@ -10,12 +11,14 @@
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
+    <% unless customer.status == '退会' %>
       <tr>
         <td><%= customer.email %></td>
         <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
         <td><%= customer.status %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
