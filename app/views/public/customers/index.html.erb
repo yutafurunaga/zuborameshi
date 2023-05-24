@@ -1,9 +1,17 @@
-<h1>ユーザー一覧</h1>
+<head>
+  <style>
+    .table {
+      max-width: 70%;
+    }
+</style>
+</head>
 
-<table class="table">
+<h1>会員一覧</h1>
+
+<div class="d-flex justify-content-center">
+<table class="table bg-white">
   <thead>
     <tr>
-      <th>Email</th>
       <th>名前</th>
       <th>フリガナ</th>
       <th>ステータス</th>
@@ -13,8 +21,7 @@
     <% @customers.each do |customer| %>
     <% unless customer.status == '退会' %>
       <tr>
-        <td><%= customer.email %></td>
-        <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
+        <td><%= link_to "#{customer.family_name} #{customer.personal_name}", customer_path(customer) %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
         <td><%= customer.status %></td>
       </tr>
@@ -22,3 +29,4 @@
     <% end %>
   </tbody>
 </table>
+</div>

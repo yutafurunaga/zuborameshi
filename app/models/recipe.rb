@@ -23,4 +23,5 @@ class Recipe < ApplicationRecord
    def display_photo
     photo.attached? ? photo : 'no_image.jpeg'
   end
+  
 end

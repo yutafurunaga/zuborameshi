@@ -26,7 +26,7 @@
       <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
           <div class="col">
-            <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3" %>
+            <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3", method: :post %>
           </div>
         </div>
         <div class="row">
@@ -44,5 +44,5 @@
     </div>
   </div>
 </div>
-                <%= link_to "レシピ一覧", recipes_path %>
+<%= link_to "レシピ一覧", recipes_path %>
            

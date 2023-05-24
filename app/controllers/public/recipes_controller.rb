@@ -31,6 +31,7 @@ class Public::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @customer = @recipe.customer
   end
 
   def edit

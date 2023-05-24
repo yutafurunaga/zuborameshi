@@ -1,77 +1,135 @@
-<div class="recipe-details">
-  <h1><%= @recipe.dish_name %></h1>
-  <p><%= @recipe.recipe_description %></p>
-
-  <% if @recipe.photo.attached? %>
-    <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
-  <% else %>
-    <%= image_tag "no_image.jpg", class: "img-fluid" %>
-  <% end %>
-
-  <div class="tags">
-    <%= @recipe.tag_list %>
-  </div>
-
-  <h2>材料</h2>
-  <ul class="ingredients-list">
-    <% @recipe.ingredients.each do |ingredient| %>
-      <li><%= ingredient.ingredient_name %> - <%= ingredient.quantity %></li>
+<head>
+  <style>
+    .table {
+      max-width: 50%;
+    }
+  
+  .form-control.resize-vertical {
+    resize: vertical;
+    height: 100px;
+    max-width: 60%;
+</style>
+</head>
+<div class="d-flex justify-content-center">
+<table class="table table-bordered bg-white">
+  <tbody>
+    <% if @customer %>
+      <tr>
+        <th>投稿者</th>
+        <td><%= @customer.family_name %></td>
+      </tr>
     <% end %>
-  </ul>
 
-  <h2>手順</h2>
-  <ol class="steps-list">
-    <% @recipe.steps.each do |step| %>
-      <li><%= step.instruction %></li>
-    <% end %>
-  </ol>
-
-  <% if @recipe.favorited_by?(current_customer) %>
-    <%= link_to recipe_favorites_path(@recipe), method: :delete, class: "btn btn-danger" do %>
-      <i class="fas fa-heart"></i> お気に入り解除 (<%= @recipe.favorites.count %>)
-    <% end %>
-  <% else %>
-    <%= link_to recipe_favorites_path(@recipe), method: :post, class: "btn btn-primary" do %>
-      <i class="far fa-heart"></i> お気に入り登録 (<%= @recipe.favorites.count %>)
-    <% end %>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= link_to 'レシピ一覧', recipes_path %>
-    </div>
-    <div class="col-md-6">
-      <%= link_to "コメント一覧", recipe_comments_path(@recipe) %>
-    </div>
-  </div>
-
-  <% if current_customer == @recipe.customer %>
+    <tr>
+      <th>レシピ名</th>
+      <td><%= @recipe.dish_name %></td>
+    </tr>
+    <tr>
+      <th>レシピの説明</th>
+      <td><%= @recipe.recipe_description %></td>
+    </tr>
+    <tr>
+      <th>画像</th>
+      <td>
+        <% if @recipe.photo.attached? %>
+          <%= image_tag @recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "img-fluid" %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>タグ</th>
+      <td><%= @recipe.tag_list %></td>
+    </tr>
+    <tr>
+      <th>材料</th>
+      <td>
+        <ul class="ingredients-list">
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li><%= ingredient.ingredient_name %> - <%= ingredient.quantity %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>手順</th>
+      <td>
+        <ol class="steps-list">
+          <% @recipe.steps.each do |step| %>
+            <li><%= step.instruction %></li>
+          <% end %>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>お気に入り</th>
+      <td>
+        <% if @recipe.favorited_by?(current_customer) %>
+          <%= link_to recipe_favorites_path(@recipe), method: :delete, class: "btn btn-danger" do %>
+            <i class="fas fa-heart"></i> お気に入り解除 (<%= @recipe.favorites.count %>)
+          <% end %>
+        <% else %>
+          <%= link_to recipe_favorites_path(@recipe), method: :post, class: "btn btn-primary" do %>
+            <i class="far fa-heart"></i> お気に入り登録 (<%= @recipe.favorites.count %>)
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>レシピ一覧へのリンク</th>
+      <td><%= link_to 'レシピ一覧', recipes_path %></td>
+    </tr>
+    <tr>
+      <th>コメント一覧へのリンク</th>
+      <td><%= link_to "コメント一覧", recipe_comments_path(@recipe) %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><% if current_customer == @recipe.customer %>
     <%= link_to "編集", edit_recipe_path(@recipe), class: "btn btn-sm btn-primary mr-2" %>
     <%= button_to '削除', @recipe, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
   <% end %>
-
-  <div class="comments-section">
-    <h3>コメント</h3>
-
-    <%= form_with(model: [@recipe, Comment.new]) do |form| %>
-      <%= form.text_area :comment, class: "form-control" %>
-      <%= form.submit "コメントする", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  </td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
-<div class="comments">
-  <% @recipe.comments.each do |comment| %>
-  <% if comment.customer.present? %>
-    <div class="comment">
-      <p><%= comment.customer.family_name %>: <%= comment.comment %></p>
-      <% if comment.customer == current_customer %>
-        <div class="actions">
-          <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
-          <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
-        </div>
+
+<div class="comments-section">
+  <h3>コメント</h3>
+
+  <%= form_with(model: [@recipe, Comment.new]) do |form| %>
+　<%= form.text_area :comment, class: "form-control resize-vertical" %>
+    <%= form.submit "コメントする", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
+<table class="table bg-white">
+  <caption>コメント</caption>
+  <thead>
+    <tr>
+      <th>投稿者</th>
+      <th>コメント内容</th>
+      <th>アクション</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe.comments.each do |comment| %>
+      <% if comment.customer.present? %>
+        <tr>
+          <td><%= comment.customer.family_name %>さん</td>
+          <td><%= comment.comment %></td>
+          <td>
+            <% if comment.customer == current_customer %>
+              <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-  <% end %>
-  <% end %>
-</div>
+    <% end %>
+  </tbody>
+</table>
