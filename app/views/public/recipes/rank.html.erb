@@ -1,0 +1,28 @@
+<h1>いいね数ランキング</h1>
+
+<table class="table bg-light table-hover">
+  <thead>
+    <tr>
+      <th scope="col">順位</th>
+      <th scope="col">料理名</th>
+      <th scope="col">画像</th>
+      <th scope="col">いいね数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorite_recipe_ranks.each.with_index(1) do |recipe, i| %>
+      <tr>
+        <td class="text-bold"><h2><%= i %>位</h2></td>
+        <td><%= link_to recipe.dish_name, recipe_path(recipe) %></td>
+        <td class="col-sm-2">
+          <% if recipe.photo.attached? %>
+            <%= image_tag recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
+          <% else %>
+            <%= image_tag "no_image.jpg", class: "img-fluid" %>
+          <% end %>
+        </td>
+        <td><%= recipe.favorites.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

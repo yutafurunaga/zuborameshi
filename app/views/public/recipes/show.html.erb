@@ -107,29 +107,29 @@
 </div>
 
 
-<table class="table bg-white">
-  <caption>コメント</caption>
-  <thead>
-    <tr>
-      <th>投稿者</th>
-      <th>コメント内容</th>
-      <th>アクション</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @recipe.comments.each do |comment| %>
-      <% if comment.customer.present? %>
-        <tr>
-          <td><%= comment.customer.family_name %>さん</td>
-          <td><%= comment.comment %></td>
-          <td>
-            <% if comment.customer == current_customer %>
-              <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
-              <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
-            <% end %>
-          </td>
-        </tr>
+  <table class="table bg-light table-hover">
+    <caption>コメント</caption>
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>コメント内容</th>
+        <th>アクション</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe.comments.each do |comment| %>
+        <% if comment.customer.present? %>
+          <tr>
+            <td><%= comment.customer.family_name %>さん</td>
+            <td><%= comment.comment %></td>
+            <td>
+              <% if comment.customer == current_customer %>
+                <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
+                <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>

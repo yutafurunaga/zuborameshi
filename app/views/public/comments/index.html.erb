@@ -1,7 +1,33 @@
-<h1><%= @recipe.dish_name %> のコメント一覧</h1>
+<head>
+  <style>
+    .table {
+      max-width: 70%;
+    }
+  
+  
+</style>
+</head>
 
-<ul>
-  <% @comments.each do |comment| %>
-    <li><%= comment.comment %></li>
-  <% end %>
-</ul>
+<h1><%= @recipe.dish_name %> のコメント一覧</h1>
+<div class="d-flex justify-content-center">
+<table class="table bg-light table-hover">
+  <thead>
+    <tr>
+      <th>コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.customer.family_name %>さん</td>
+            <td><%= comment.comment %></td>
+            <td>
+              <% if comment.customer == current_customer %>
+                <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
+                <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+            </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

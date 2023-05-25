@@ -1,27 +1,44 @@
-<div class="my-page">
-  <h1>マイページ</h1>
-  <div class="row">
-    <div class="col-md-6">
-      <p class="mb-2"><strong>氏名</strong></p>
-      <p>姓: <%= @customer.family_name %></p>
-      <p>名: <%= @customer.personal_name %></p>
-      <p>セイ: <%= @customer.family_name_kana %></p>
-      <p>メイ: <%= @customer.personal_name_kana %></p>
-      <p>メールアドレス: <%= @customer.email %></p>
-      <p>ステータス: <%= @customer.status %></p>
-    </div>
-    <div class="col-md-6">
+<div class="container">
+  <h1>会員情報</h1>
+  <div class="my-page d-flex justify-content-center">
+    <div class="col-sm-10 mx-auto">
+     <table class="table bg-white">
+        <tbody>
+          <tr>
+            <th>姓</th>
+            <td><%= @customer.family_name %></td>
+            <th>名</th>
+            <td><%= @customer.personal_name %></td>
+          </tr>
+          <tr>
+            <th>セイ</th>
+            <td><%= @customer.family_name_kana %></td>
+            <th>メイ</th>
+            <td><%= @customer.personal_name_kana %></td>
+          </tr>
+          <% if current_customer == @customer %>
+            <tr>
+              <th>メールアドレス</th>
+              <td colspan="3"><%= @customer.email %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th>ステータス</th>
+            <td colspan="3"><%= @customer.status %></td>
+          </tr>
+        </tbody>
+      </table>
       <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-primary mb-3" %>
-    </div>
-  </div>
-
+ 
   <h1><%= @customer.family_name %> のレシピ一覧</h1>
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
       <li class="list-group-item">
          <% if recipe.photo.attached? %>
           <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
-         <% end %>
+          <% else %>
+           <%= image_tag "no_image.jpeg", class: "img-fluid" %>
+        <% end %>
         <%= recipe.dish_name %>: <%= recipe.recipe_description %>
         <%= link_to "コメント一覧", admin_recipe_comments_path(recipe), class: "btn btn-secondary btn-sm mx-2" %>
         <%= link_to "レシピ詳細", admin_recipe_path(recipe), class: "btn btn-primary btn-sm mx-2" %>

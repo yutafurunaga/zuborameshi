@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'searches/search'
+  get 'searches/search'
   end
   get 'searches/search'
   namespace :public do
@@ -24,9 +24,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   devise_scope :admin do
       get 'admin/sign_out' => 'admin/sessions#destroy'
-    end
+  end
   devise_scope :customer do
-    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   namespace :admin do
@@ -45,10 +45,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
 
+
     resources :recipes do
     resources :comments
     resource :favorites
     get :favorite, to: "recipes#favorite"
+    get '/rank', to: 'recipes#rank', as: 'rank'
     end
 
     resources :relationships

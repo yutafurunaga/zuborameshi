@@ -1,10 +1,25 @@
 <h1>いいねしたレシピ一覧</h1>
-<% @favorite_recipes.each do |recipe| %>
-  <% if recipe.photo.attached? %>
-  <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
-  <% else %>
-  <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
-  <% end %>
-  <%= link_to recipe.dish_name, recipe_path(recipe) %>
-  <%= recipe.recipe_description %>
-<% end %>
+<table class="table bg-light table-hover">
+  <thead>
+    <tr>
+      <th>写真</th>
+      <th>料理名</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorite_recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <% if recipe.photo.attached? %>
+            <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
+          <% else %>
+            <%= image_tag "no_image.jpg", class: "img-fluid" %>
+          <% end %>
+        </td>
+        <td><%= link_to recipe.dish_name, recipe_path(recipe) %></td>
+        <td><%= recipe.recipe_description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

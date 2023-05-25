@@ -61,7 +61,11 @@ class Public::RecipesController < ApplicationController
   def favorite
   @favorite_recipes = current_customer.favorite_recipes
   end
-
+  
+  def rank
+  # いいね数ランキング
+  @favorite_recipe_ranks = Recipe.find(Favorite.group(:recipe_id).order('count(recipe_id) desc').pluck(:recipe_id))
+  end
   private
 
   def set_recipe
