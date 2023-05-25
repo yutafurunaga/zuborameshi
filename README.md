@@ -43,5 +43,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
-
+- https://free-materials.com
+- https://www.ac-illust.com/main/related.php?id=2616215

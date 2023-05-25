@@ -13,7 +13,7 @@
     <% @favorite_recipe_ranks.each.with_index(1) do |recipe, i| %>
       <tr>
         <td class="text-bold"><h2><%= i %>位</h2></td>
-        <td><%= link_to recipe.dish_name, recipe_path(recipe) %></td>
+        <td><h3><%= link_to recipe.dish_name, recipe_path(recipe) %></h3></td>
         <td class="col-sm-2">
           <% if recipe.photo.attached? %>
             <%= image_tag recipe.photo.variant(resize: "300x300"), class: "img-fluid" %>
