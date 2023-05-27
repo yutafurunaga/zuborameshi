@@ -19,11 +19,11 @@
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
-    <% unless customer.status == '退会' %>
+    <% unless customer.is_deleted? %>
       <tr>
         <td><%= link_to "#{customer.family_name} #{customer.personal_name}", customer_path(customer) %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
-        <td><%= customer.status %></td>
+        <td>有効</td>
       </tr>
       <% end %>
     <% end %>

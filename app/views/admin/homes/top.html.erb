@@ -15,7 +15,7 @@
         <td><%= customer.email %></td>
         <td><%= "#{customer.family_name} #{customer.personal_name}" %></td>
         <td><%= "#{customer.family_name_kana} #{customer.personal_name_kana}" %></td>
-        <td><%= customer.status %></td>
+        <td><%= customer.is_deleted? ? "退会" : "有効" %></td>
         <td><%= link_to "会員情報、レシピ詳細", admin_customer_path(customer), class: "btn btn-primary btn-sm" %></td>
       </tr>
     <% end %>

@@ -21,8 +21,10 @@
     <%= form.text_area :recipe_description, class: "form-control" %>
   </div>
 
-   <%= form.label :tag_list, 'タグ' %>
-    <%= form.select :tag_list, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
+  <div class="form-group">
+  <%= form.label :tag_list, 'タグ' %>
+  <%= select_tag :tag_list, options_for_select(ActsAsTaggableOn::Tag.all { |tag| [tag.name, tag.name] }), include_blank: true, class: 'form-control' %>
+　</div>
 
   <h3>材料一覧</h3>
   <div id="ingredients">

@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   # 論理削除用のスコープを設定
-  default_scope { where(is_deleted: false) }
+  # default_scope { where(is_deleted: false) }
   # 退会処理を実行するメソッド
   def withdraw
     update(is_deleted: true)

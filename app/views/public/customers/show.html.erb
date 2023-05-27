@@ -24,7 +24,7 @@
           <% end %>
           <tr>
             <th>ステータス</th>
-            <td colspan="3"><%= @customer.status %></td>
+            <td colspan="3"><%= @customer.is_deleted? ? "退会" : "有効" %></td>
           </tr>
         </tbody>
       </table>

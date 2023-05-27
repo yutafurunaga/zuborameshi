@@ -44,5 +44,8 @@
     </div>
   </div>
 </div>
-<%= link_to "レシピ一覧", recipes_path %>
-
+<% if customer_signed_in? %>
+  <div style="text-align: center;">
+    <%= link_to "レシピ一覧", recipes_path,  class: 'btn btn-primary' %>
+  </div>
+<% end %>
