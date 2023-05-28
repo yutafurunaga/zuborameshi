@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Admin.create!(email: 'admin@admin',password: 'testtest')
+Admin.create!(email: 'admin@admin',password: 'testtest')
 
 tags = ['肉料理', '野菜料理', '魚介料理', '麺類', 'ご飯もの', '汁物', '和食', '洋食', '中華', 'パン類' ] # タグの一覧を定義
 #tags = ['フレンチ', 'イタリアン']
