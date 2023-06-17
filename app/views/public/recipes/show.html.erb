@@ -8,7 +8,7 @@
     resize: vertical;
     height: 100px;
     max-width: 60%;
-</style>
+ </style>
 </head>
 <div class="d-flex justify-content-center">
 <table class="table table-bordered bg-white">
@@ -63,17 +63,9 @@
       </td>
     </tr>
     <tr>
-      <th>お気に入り</th>
-      <td>
-        <% if @recipe.favorited_by?(current_customer) %>
-          <%= link_to recipe_favorites_path(@recipe), method: :delete, class: "btn btn-danger" do %>
-            <i class="fas fa-heart"></i> お気に入り解除 (<%= @recipe.favorites.count %>)
-          <% end %>
-        <% else %>
-          <%= link_to recipe_favorites_path(@recipe), method: :post, class: "btn btn-primary" do %>
-            <i class="far fa-heart"></i> お気に入り登録 (<%= @recipe.favorites.count %>)
-          <% end %>
-        <% end %>
+     <th>お気に入り</th>
+      <td id="favorite_btn_<%= @recipe.id %>">
+      <%= render 'public/favorites/favorite', recipe: @recipe %>
       </td>
     </tr>
     <tr>
@@ -97,39 +89,14 @@
 </div>
 
 
-<div class="comments-section">
-  <h3>コメント</h3>
-
-  <%= form_with(model: [@recipe, Comment.new]) do |form| %>
-　<%= form.text_area :comment, class: "form-control resize-vertical" %>
-    <%= form.submit "コメントする", class: "btn btn-primary" %>
-  <% end %>
+<!--部分テンプレート化-->
+<!--コメントフォーム-->
+<div class="new-comment">
+  <%= render 'public/comments/form', recipe: @recipe %>
 </div>
-
-
-  <table class="table bg-light table-hover">
-    <caption>コメント</caption>
-    <thead>
-      <tr>
-        <th>投稿者</th>
-        <th>コメント内容</th>
-        <th>アクション</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @recipe.comments.each do |comment| %>
-        <% if comment.customer.present? %>
-          <tr>
-            <td><%= comment.customer.family_name %>さん</td>
-            <td><%= comment.comment %></td>
-            <td>
-              <% if comment.customer == current_customer %>
-                <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: "btn btn-secondary btn-sm" %>
-                <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+<!--コメント一覧部分-->
+<!--divタグのclassをid="comments_area"に変更-->
+<div id="comments_area"> 
+  <%= render 'public/comments/recipe_comments', recipe: @recipe %>
+</div>
+:

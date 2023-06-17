@@ -1,0 +1,10 @@
+
+<% if @recipe.favorited_by?(current_customer) %>
+  <%= link_to recipe_favorites_path(@recipe), method: :delete, remote: true, class: "btn btn-danger" do %>
+    <i class="fas fa-heart favorite-<% @recipe.id %>"></i> お気に入り解除 (<%= @recipe.favorites.count %>)
+  <% end %>
+<% else %>
+  <%= link_to recipe_favorites_path(@recipe), method: :post, remote: true, class: "btn btn-primary" do %>
+    <i class="far fa-heart favorite-<% @recipe.id %>"></i> お気に入り登録 (<%= @recipe.favorites.count %>)
+  <% end %>
+<% end %>

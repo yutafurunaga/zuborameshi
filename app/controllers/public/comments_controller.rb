@@ -10,8 +10,9 @@ class Public::CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.customer = current_customer
 
-  if @comment.save
-      redirect_to @recipe
+    if @comment.save
+      flash.now[:notice] = 'コメントを投稿しました'
+      render "public/comments/recipes_comments"  #render先にjsファイルを指定
     else
       render "recipes/show"
     end
@@ -30,7 +31,9 @@ class Public::CommentsController < ApplicationController
   
   def destroy
     @comment.destroy
-    redirect_to recipe_path(@recipe), notice: "コメントが削除されました"
+    flash.now[:alert] = '投稿を削除しました'
+    # redirect_to recipe_path(@recipe), notice: "コメントが削除されました"
+    render "recipes_comments"
   end
 
 private
