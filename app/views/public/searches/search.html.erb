@@ -1,30 +1,30 @@
 <h2>検索結果一覧</h2>
 <table class="table bg-light table-hover">
-
   <% if @range == "customers" %>
     <tbody>
       <tr>
-          <th>姓</th>
-          <th>名</th>
-          <th></th>
-          </tr>
-           <% @customer.each do |customer| %>
+        <th>姓</th>
+        <th>名</th>
+        <th></th>
+      </tr>
+      <% @customer.each do |customer| %>
+        <tr>
           <td><%= link_to customer.family_name, customer %></td>
           <td><%= customer.personal_name %></td>
         </tr>
       <% end %>
     </tbody>
   <% else %>
-
     <tbody>
-       <tr>
-          <th>写真</th>
-          <th>料理名</th>
-          <th>レシピ説明</th>
-        </tr>
-        <% @recipes.each do |recipe| %>
+      <tr>
+        <th>写真</th>
+        <th>料理名</th>
+        <th>レシピ説明</th>
+      </tr>
+      <% @recipes.each do |recipe| %>
         <tr>
-          <td><% if recipe.photo.attached? %>
+          <td>
+            <% if recipe.photo.attached? %>
               <%= image_tag recipe.photo.variant(resize: "100x100"), class: "img-fluid" %>
             <% else %>
               <%= image_tag "default_recipe_image.jpg", class: "img-fluid" %>
